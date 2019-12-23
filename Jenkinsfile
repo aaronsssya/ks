@@ -1,15 +1,20 @@
 pipeline {
   agent {
     node {
-      label 'base'
+      label 'nodejs'
     }
-
   }
+  
   stages {
-    stage('test') {
+    stage('nodejs hello') {
       steps {
-        sh 'docker'
+        container('nodejs') {
+          sh 'yarn -v'
+          sh 'node -v'
+          sh 'docker version'
+          sh 'docker images'
+        }
       }
-    }
-  }
+     }
+   }
 }
