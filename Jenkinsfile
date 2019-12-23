@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('go hello') {
       steps {
+        sh 'hostnamectl'
         container('go') {
-          sh 'hostnamectl'
           sh 'docker version'
           sh 'docker images'
         }
