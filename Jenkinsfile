@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'python ./test/unit_test.py -v'
+        sh 'ls'
       }
     }
   }
