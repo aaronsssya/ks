@@ -1,16 +1,15 @@
 pipeline {
   agent {
     node {
-      label 'nodejs'
+      label 'go'
     }
   }
   
   stages {
-    stage('nodejs hello') {
+    stage('go hello') {
       steps {
         container('nodejs') {
-          sh 'yarn -v'
-          sh 'node -v'
+          sh 'hostnamectl'
           sh 'docker version'
           sh 'docker images'
         }
