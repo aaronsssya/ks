@@ -1,0 +1,15 @@
+pipeline {
+  agent {
+    node {
+      label 'bash'
+    }
+
+  }
+  stages {
+    stage('test bash') {
+      steps {
+        sh 'ls'
+      }
+    }
+  }
+}
