@@ -11,6 +11,7 @@ pipeline {
         container('go') {
           sh 'docker version'
           sh 'docker images'
+          sh 'sonar-scanner'
         }
       }
      }
