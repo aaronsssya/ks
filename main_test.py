@@ -1,7 +1,7 @@
 import unittest
 import main
 
-class Test_main(unittest.TestCase):
+class _mainTest(unittest.TestCase):
     def test_message(self):
     	m = 'hello'
     	r = main.message(m)
