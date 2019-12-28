@@ -1,25 +1,31 @@
 pipeline {
   agent {
     node {
-      label 'go'
+      label 'python'
+    }
+
+  }
+  stages {
+    stage('Unit Test') {
+      steps {
+        container('python') {
+          sh 'python main_test.py -v'
+        }
+
+      }
+    }
+    stage('Scan Code') {
+      steps {
+        container('python') {
+          sh '''sonar-scanner \\
+  -Dsonar.projectKey=python-key \\
+  -Dsonar.projectVersion=${BUILD_NUMBER} \\
+  -Dsonar.sources=$(pwd) \\
+  -Dsonar.host.url=http://192.168.1.23:30372 \\
+  -Dsonar.login=015927321ad1047a91f3334d1d4221f38b718802'''
+        }
+
+      }
     }
   }
-  
-  stages {
-    stage('go hello') {
-      steps {
-        container('go') {
-          sh 'docker version'
-          sh 'docker images'
-          sh '''
-              sonar-scanner \
-                -Dsonar.projectKey=python-key \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=http://192.168.1.23:30372 \
-                -Dsonar.login=015927321ad1047a91f3334d1d4221f38b718802
-          '''
-        }
-      }
-     }
-   }
 }
